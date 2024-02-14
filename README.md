@@ -25,4 +25,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
->>>>>>> 91e980e (add basic rails setup and frontend with react / typescripts)

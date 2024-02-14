@@ -32,6 +32,9 @@ gem "bootsnap", require: false
 # Setup CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 gem 'rack-cors'
 
+# Good for efficient bulk insertion. Consider installing
+# gem 'activerecord-import'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

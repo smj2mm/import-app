@@ -8,7 +8,7 @@
 # According to https://blog.devgenius.io/create-a-rails-api-with-react-frontend-using-hooks-and-typescript-dcb4e84c3dbf
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "*"
+    origins "*" # "http://localhost:3000" for development or production URL
 
     resource "*",
       headers: :any,
