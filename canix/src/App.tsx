@@ -1,37 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import logo from './logo.svg';
+import { FC, useState, useEffect } from 'react';
 import './App.css';
-import Products from './components/products';
-import { get } from 'http';
+import CsvUploader from './components/CsvUploader';
+import ProductTables from './components/ProductTables';
 
-// TODO improve URL formatting stuff
-const API_URL = 'http://localhost:3000/api/v1/products';
 
-function getAPIData() {
-  return axios.get(API_URL).then((response) => response.data);
-}
+const App: FC = () => {
+  const [dataRefreshTrigger, setDataRefreshTrigger] = useState(0);
 
-function App() {
-  const [products, setProducts] = useState([])
-  useEffect(() => {
-    let mounted = true;
-    getAPIData().then(items => {
-      if (mounted) {
-        setProducts(items);
-      }
-    });
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  // This function will be passed to CsvUploader
+  const handleDataRefresh = () => {
+    setDataRefreshTrigger((prev) => prev + 1); // Increment to trigger a re-render
+  };
 
   return (
     <div className="App">
-      <h1>Hello</h1>
-      <Products products={products} />
+      <h1>Canix Scales CSV Uploader</h1>
+      <CsvUploader onDataUploadSuccess={handleDataRefresh} />
+      {/* Pass dataRefreshTrigger as a key to force re-render when it changes */}
+      <ProductTables dataRefreshTrigger={dataRefreshTrigger} />
     </div>
   );
 }
+
 
 export default App;
