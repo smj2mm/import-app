@@ -1,27 +1,73 @@
-# README
+# Project Setup and Run Instructions
 
-# canix-import-app
-Takehome problem for Canix
+This guide assumes that you have Ruby, Rails, Node.js, and PostgreSQL installed on your Mac. If not, please install them first.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Backend Setup
 
-Things you may want to cover:
+1. Navigate to the project directory (this directory)
 
-* Ruby version
+2. Install the required Ruby gems:
 
-* System dependencies
+    ```bash
+    bundle install
+    ```
 
-* Configuration
+3. Set up the environment variables. You can do this by creating a `.env` file in the root of your project with the following content:
 
-* Database creation
+    ```bash
+    RAILS_ENV=development
+    POSTGRES_DB=your_database_name
+    POSTGRES_USER=your_postgres_username
+    POSTGRES_PASSWORD=your_postgres_password
+    RAILS_MASTER_KEY=your_master_key
+    ```
 
-* Database initialization
+4. Create the database:
 
-* How to run the test suite
+    ```bash
+    rails db:create
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+5. Run the database migrations:
 
-* Deployment instructions
+    ```bash
+    rails db:migrate
+    ```
 
-* ...
+6. Start the Rails server:
+
+    ```bash
+    rails s
+    ```
+
+The backend server will start running at `http://localhost:3000`.
+
+## Frontend Setup
+
+1. Navigate to the frontend directory:
+
+    ```bash
+    cd /path/to/your/project/frontend
+    ```
+
+2. Install the required Node.js packages:
+
+    ```bash
+    npm install
+    ```
+
+3. Set up the environment variables. You can do this by creating a `.env` file in the root of your frontend project with the following content:
+
+    ```bash
+    REACT_APP_API_URL=http://localhost:3000/api/v1
+    ```
+
+4. Start the React server:
+
+    ```bash
+    npm start
+    ```
+
+The frontend server will start running at `http://localhost:3001`.
+
+Now, you should be able to access the application in your web browser at `http://localhost:3001`.

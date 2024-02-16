@@ -6,14 +6,18 @@ class Api::V1::ProductsController < ApplicationController
     Import CSV file to database.
     DOC
     file = params[:file]
-    
+
     if file.present? && file.content_type == 'text/csv'
-      CsvImportService.new(file).import
-      render json: { message: 'CSV imported successfully.' }
+      begin
+        CsvImportService.new(file).import
+        render json: { message: 'CSV imported successfully.' }, status: :created
+      rescue => e
+        render json: { error: "Error processing CSV file: #{e.message}" }, status: :bad_request
+      end
     else
-      render json: { error: 'Invalid CSV file.' }, status: :unprocessable_entity
-    end
+    render json: { error: 'Invalid CSV file.' }, status: :unprocessable_entity
   end
+end
 
   # GET /products
   def index

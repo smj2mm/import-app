@@ -5,9 +5,10 @@ import { API_BASE_URL } from '../constants'
 
 interface CsvUploaderProps {
     onDataUploadSuccess: () => void; // Callback to notify App component
+    setError: (error: string | undefined) => void;
 }
 
-const CsvUploader: React.FC<CsvUploaderProps> = ({ onDataUploadSuccess }) => {
+const CsvUploader: React.FC<CsvUploaderProps> = ({ onDataUploadSuccess, setError }) => {
     const [csvFile, setCsvFile] = useState<File | null>(null);
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -33,9 +34,12 @@ const CsvUploader: React.FC<CsvUploaderProps> = ({ onDataUploadSuccess }) => {
             .then(response => {
                 console.log('CSV uploaded successfully:', response.data);
                 onDataUploadSuccess(); // Notify App component that data upload was successful
+                setError(undefined);
             })
             .catch(error => {
-                console.error('Error uploading CSV:', error);
+                debugger;
+                console.error('Error uploading CSV:', error.response?.data?.error);
+                setError(error.response?.data?.error);
             });
     };
 
