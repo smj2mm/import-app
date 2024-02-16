@@ -1,27 +1,43 @@
-# README
+# Canix Import Application
 
-# canix-import-app
-Takehome problem for Canix
+This is a brief guide on how to run the application on a Mac.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisites
 
-Things you may want to cover:
+Before you can run the application, you need to have the following installed:
 
-* Ruby version
+- Docker: You can download it from [Docker's website](https://www.docker.com/products/docker-desktop).
+- Docker Compose: This comes with Docker Desktop for Mac.
 
-* System dependencies
+## Running the Application
 
-* Configuration
+1. Open Terminal.
 
-* Database creation
+2. Navigate to the directory containing the application:
 
-* Database initialization
+    ```bash
+    cd /path/to/your/application
+    ```
 
-* How to run the test suite
+3. Build the Docker images:
 
-* Services (job queues, cache servers, search engines, etc.)
+    ```bash
+    docker-compose build
+    ```
 
-* Deployment instructions
+4. Start the application:
 
-* ...
+    ```bash
+    docker-compose up
+    ```
+
+Your application should now be running. The frontend is accessible at `http://localhost:3001`, and the backend at `http://localhost:3000`.
+
+## Stopping the Application
+
+To stop the application, press `Ctrl+C` in the Terminal where you ran `docker-compose up`.
+
+You can also stop the application by running the following command in another Terminal:
+
+```bash
+docker-compose down
