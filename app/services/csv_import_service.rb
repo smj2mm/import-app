@@ -6,14 +6,15 @@ class CsvImportService
   Service used to import CSV files to the database.
   DOC
 
-  def initialize(file)
-    @file = file
+  def initialize(file_contents)
+    @file = CSV.parse(file_contents, headers:true)
   end
 
   def import
     products = []
+    # p "File in service: #{@file}"
   
-    CSV.foreach(@file.path, headers: true) do |row|
+    @file.each do |row|
       begin
         validate_row(row)
         products << Product.new(

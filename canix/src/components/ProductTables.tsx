@@ -19,8 +19,6 @@ interface CategorySummary {
 }
 
 interface ApiResponse {
-    category_summaries: CategorySummary[]; // KILL
-    import_date: string; // KILL
     products_by_category: {
         [category: string]: Product[];
     };
